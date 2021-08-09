@@ -43,7 +43,7 @@ User=root
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=/usr/bin/python -O /usr/local/bin/edu-ssh 443
+ExecStart=/usr/bin/python -O /usr/local/bin/edu-ssh
 Restart=on-failure
 
 [Install]
