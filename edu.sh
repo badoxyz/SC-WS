@@ -2,7 +2,7 @@
 # Proxy For Edukasi Ssh & Ovpn Websocket
 # ====================================
 
-# Installing SSH WS TLS
+# Installing SSH WS NON TLS
 wget -q -O /usr/local/bin/edu-ssh https://raw.githubusercontent.com/badoxyz/SC-WS/main/proxy-template.py
 chmod +x /usr/local/bin/edu-ssh
 
