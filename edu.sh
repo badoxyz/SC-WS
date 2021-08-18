@@ -56,7 +56,6 @@ END
 
 systemctl daemon-reload
 systemctl enable ws-stunnel
-systemctl start ws-stunnel
 systemctl restart ws-stunnel
 
 # Ovpn Websocket !!!
