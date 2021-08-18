@@ -2,7 +2,7 @@
 # Proxy For Edukasi Ssh & Ovpn Websocket
 # ====================================
 
-# Getting Proxy Template
+# Installing SSH WS TLS
 wget -q -O /usr/local/bin/edu-ssh https://raw.githubusercontent.com/badoxyz/SC-WS/main/proxy-template.py
 chmod +x /usr/local/bin/edu-ssh
 
@@ -30,10 +30,14 @@ systemctl daemon-reload
 systemctl enable edussh-nontls
 systemctl restart edussh-nontls
 
+# Installing SSH WS TLS
+wget -O /usr/local/bin/ws-stunnel https://raw.githubusercontent.com/badoxyz/SC-WS/main/ws-stunnel
+chmod +x /usr/local/bin/ws-stunnel
+
 # Installing Service
-cat > /etc/systemd/system/edussh-tls.service << END
+cat > /etc/systemd/system/ws-stunnel.service << END
 [Unit]
-Description=Ssh Websocket By Badoxyz
+Description=SSH Over Websocket Python Badoxyz
 Documentation=https://t.me/Badoxyz
 After=network.target nss-lookup.target
 
@@ -43,16 +47,17 @@ User=root
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=/usr/bin/python -O /usr/local/bin/edu-ssh
 Restart=on-failure
+ExecStart=/usr/bin/python -O /usr/local/bin/ws-stunnel
 
 [Install]
 WantedBy=multi-user.target
 END
 
 systemctl daemon-reload
-systemctl enable edussh-tls
-systemctl restart edussh-tls
+systemctl enable ws-stunnel
+systemctl start ws-stunnel
+systemctl restart ws-stunnel
 
 # Ovpn Websocket !!!
 # =================================
@@ -91,7 +96,7 @@ echo -e "==============================="
 echo -e "Done Install Ssh & Ovpn Websocket"
 echo -e "==============================="
 echo -e "PORT SSH NONTLS : 2095"
-echo -e "PORT SSH TLS         : 2096"
+echo -e "PORT SSH TLS         : 443"
 echo -e "PORT OVPN WS     : 2082"
 echo -e "==============================="
 echo -e "Script By Badoxyz"
